@@ -55,18 +55,6 @@ public enum LocalizationKeys {
             public static let UnsavedChanges = "admin.settingsPage.unsavedChanges"
         }
 
-        public enum Tasks {
-            public static let HoursAgo = "admin.tasks.hoursAgo"
-            public static let JustNow = "admin.tasks.justNow"
-            public static let LastRun = "admin.tasks.lastRun"
-            public static let MinutesAgo = "admin.tasks.minutesAgo"
-            public static let Name = "admin.tasks.name"
-            public static let Never = "admin.tasks.never"
-            public static let NoJobs = "admin.tasks.noJobs"
-            public static let Schedule = "admin.tasks.schedule"
-            public static let Title = "admin.tasks.title"
-        }
-
         public enum TierManagement {
             public static let AddTier = "admin.tierManagement.addTier"
             public static let CreateError = "admin.tierManagement.createError"
