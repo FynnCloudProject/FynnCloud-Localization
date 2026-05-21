@@ -21,7 +21,7 @@ jobs:
           mkdir -p Locales
           curl -fsSL \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            "https://raw.githubusercontent.com/FynnCloudProject/FynnCloud-Web/main/i18n/locales/en.json" \
+            "https://raw.githubusercontent.com/FynnCloudProject/web/main/i18n/locales/en.json" \
             -o Locales/en.json
 
       - name: Generate LocalizationKeys.swift
