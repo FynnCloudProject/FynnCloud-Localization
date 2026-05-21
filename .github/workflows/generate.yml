@@ -1,0 +1,51 @@
+name: Generate Localization Keys
+
+on:
+  repository_dispatch:
+    types: [translations-updated]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch en.json from UI repo
+        run: |
+          mkdir -p Locales
+          curl -fsSL \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://raw.githubusercontent.com/FynnCloudProject/FynnCloud-UI/main/i18n/locales/en.json" \
+            -o Locales/en.json
+
+      - name: Generate LocalizationKeys.swift
+        run: node Scripts/generate.js
+
+      - name: Check for changes
+        id: diff
+        run: |
+          git diff --quiet Sources/ && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and tag
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Sources/
+          git commit -m "chore: regenerate LocalizationKeys from en.json"
+          
+          # Auto-increment patch version
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$LATEST_TAG"
+          NEW_TAG="$MAJOR.$MINOR.$((PATCH + 1))"
+          
+          git tag "$NEW_TAG"
+          git push
+          git push --tags
+          echo "📦 Published $NEW_TAG"
