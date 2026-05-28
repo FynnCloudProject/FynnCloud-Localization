@@ -5,6 +5,11 @@
 // swiftlint:disable type_body_length file_length
 public enum LocalizationKeys {
     public static let Welcome = "welcome"
+    public enum Action {
+        public static let Retry = "action.retry"
+        public static let RetryConnection = "action.retryConnection"
+    }
+
     public enum Admin {
         public static let AppName = "admin.appName"
         public static let BackToFiles = "admin.backToFiles"
@@ -188,9 +193,24 @@ public enum LocalizationKeys {
         public static let InvalidRequest = "error.invalidRequest"
         public static let NetworkError = "error.networkError"
         public static let NotFound = "error.notFound"
+        public static let ServerOffline = "error.serverOffline"
         public static let ServerUnreachable = "error.serverUnreachable"
         public static let Unauthorized = "error.unauthorized"
         public static let Unknown = "error.unknown"
+
+        public enum Offline {
+            public static let AttemptCount = "error.offline.attemptCount"
+            public static let Attempts = "error.offline.attempts"
+            public static let Banner = "error.offline.banner"
+            public static let Checking = "error.offline.checking"
+            public static let Description = "error.offline.description"
+            public static let HoursAgo = "error.offline.hoursAgo"
+            public static let JustNow = "error.offline.justNow"
+            public static let LastConnected = "error.offline.lastConnected"
+            public static let MinutesAgo = "error.offline.minutesAgo"
+            public static let NextRetry = "error.offline.nextRetry"
+            public static let StillUnable = "error.offline.stillUnable"
+        }
     }
 
     public enum Files {
@@ -287,18 +307,33 @@ public enum LocalizationKeys {
             public static let Title = "files.move.title"
         }
 
+        public enum Share {
+            public static let ActiveLinks = "files.share.activeLinks"
+            public static let Copied = "files.share.copied"
+            public static let Copy = "files.share.copy"
+            public static let CopyFailed = "files.share.copyFailed"
+            public static let CreateFailed = "files.share.createFailed"
+            public static let CreateLink = "files.share.createLink"
+            public static let Expires = "files.share.expires"
+            public static let Folder = "files.share.folder"
+            public static let NoLinks = "files.share.noLinks"
+            public static let Revoke = "files.share.revoke"
+            public static let RevokeFailed = "files.share.revokeFailed"
+            public static let Title = "files.share.title"
+        }
+
         public enum `Type` {
             public static let Folder = "files.type.folder"
         }
     }
 
     public enum Navigation {
-        public static let AllFiles = "navigation.allFiles"
-        public static let FavoriteFiles = "navigation.favoriteFiles"
+        public static let All = "navigation.all"
+        public static let Favorites = "navigation.favorites"
         public static let Logout = "navigation.logout"
-        public static let RecentFiles = "navigation.recentFiles"
+        public static let Recent = "navigation.recent"
         public static let Settings = "navigation.settings"
-        public static let SharedFiles = "navigation.sharedFiles"
+        public static let Shared = "navigation.shared"
         public static let Trash = "navigation.trash"
     }
 
@@ -306,6 +341,21 @@ public enum LocalizationKeys {
         public static let AvailableSpace = "quota.availableSpace"
         public static let Title = "quota.title"
         public static let UsedSpace = "quota.usedSpace"
+    }
+
+    public enum SharePage {
+        public static let Back = "sharePage.back"
+        public static let Download = "sharePage.download"
+        public static let EmptyFolder = "sharePage.emptyFolder"
+        public static let LinkExpired = "sharePage.linkExpired"
+        public static let LinkExpiredDesc = "sharePage.linkExpiredDesc"
+        public static let LinkNotFound = "sharePage.linkNotFound"
+        public static let LinkNotFoundDesc = "sharePage.linkNotFoundDesc"
+        public static let PreviewNotAvailable = "sharePage.previewNotAvailable"
+        public static let ShowPreview = "sharePage.showPreview"
+        public static let SomethingWentWrong = "sharePage.somethingWentWrong"
+        public static let UnableToLoad = "sharePage.unableToLoad"
+        public static let Viewing = "sharePage.viewing"
     }
 
     public enum Upload {
